@@ -11,7 +11,7 @@ $user = $_SESSION['user'] ?? null;
 $username_or_email = $_POST['username_or_email'] ?? null;
 $action_post = $_POST['action'] ?? null;
 
-//const ERR_AGE = 1;
+//const ERR_AGE = 1; - научиться пользоваться константами!!!
 
 $db = getDB();
 
