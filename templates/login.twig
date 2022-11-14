@@ -1,0 +1,23 @@
+    <div>
+        <h4>Login</h4>
+        <form action="/login.php" method="post">
+            <input type="hidden" name="action" value="login">
+            <div>
+                <input class="input" type="text" name="username_or_email" placeholder="Your name or email"/>
+            </div>
+            <br>
+            <div>
+                <input class="input" type="password" name="password" placeholder="Your password"/>
+            </div>
+            <br>
+            <div>
+                <button type="submit" class="button">Login</button>
+            </div>
+        </form>
+
+    </div>
+
+
+{% if log_good == false %}
+    <p>Логин или пароль введен неверно :(</p>
+{% endif %}

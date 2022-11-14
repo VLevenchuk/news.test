@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <div>
+        <h4>Registration</h4>
+        <form action="/registration.php" method="post">
+            <input type="hidden" name="action" value="register">
+            <div>
+                <input class="input" type="text" name="username" placeholder="Your name" value="{{ username_value }}"/>
+            </div>
+            {% if err_username == 1 %}
+                <small>Введите имя корректно</small>
+            {% endif %}
+
+            {% if err_username == 2 %}
+                <small>Имя не должно быть больше 10 символов</small>
+            {% endif %}
+
+            {% if err_username == 3 %}
+                <small>Поле не может быть пустым</small>
+            {% endif %}
+            <br><br>
+            <div>
+                <input class="input" type="password" name="password" placeholder="Your password" value="{{ password_value }}"/>
+            </div>
+            {% if err_password == 1 %}
+                <small>Поле не может быть пустым</small>
+            {% endif %}
+
+            {% if err_password == 2 %}
+                <small>Пароль должен состояить минимум из 5 символов</small>
+            {% endif %}
+            <br><br>
+            <div>
+                <input class="input" type="email" name="email" placeholder="Your email" value="{{ email_value }}"/>
+            </div>
+            {% if err_email == 1 %}
+                <small>Email введен некорректно</small>
+            {% endif %}
+
+            {% if err_email == 2 %}
+                <small>Поле не можнт быть пустым</small>
+            {% endif %}
+            <br><br>
+            <div>
+                <button type="submit" class="button">Register</button>
+            </div>
+        </form>
+    </div>
+
+</html>

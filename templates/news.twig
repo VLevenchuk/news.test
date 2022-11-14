@@ -1,0 +1,71 @@
+<p>НАВІНАЯ СТАРОНКА</p>
+
+{% if user_type == 'admin' %}
+    <a href="/news.php?command=add_news_input">Добавить новость</a>
+    {% if add_news_input == 'true' %}
+        <div>
+            <h4>Add news</h4>
+            <form action="/news.php" method="post">
+                <input type="hidden" name="action" value="add_news">
+                <div>
+                    <input class="input" type="text" name="header" size="50" placeholder="Header news"/>
+                </div>
+                <br>
+                <div>
+                    <textarea class="input" name="text" cols="50" rows="5" placeholder="News text"></textarea>
+                </div>
+                <br>
+                <div>
+                    <input class="input" type="text" name="author" size="50" placeholder="Author name"/>
+                </div>
+                <br>
+                <div>
+                    <button class="input" type="submit">Post news</button>
+                </div>
+                <br>
+            </form>
+        </div>
+    {% endif %}
+{% endif %}
+
+<div>
+    {% for news in all_news %}
+        <table>
+            <tr>
+                <td>
+                    <h1>{{ news.header }}</h1>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>{{ news.text }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <small>{{ news.author }}, {{ news.publication_date }}</small>
+                </td>
+            </tr>
+            {% if user_online == true %}
+                <tr>
+                    <td>
+                        <form action="/news.php" method="post">
+                            <input type="hidden" name="action" value="add_comment">
+                            <input type="hidden" name="news_id" value="{{ news.id }}">
+                            <textarea class="input" name="text" cols="40" rows="2"></textarea>
+                            <br><br>
+                            <button type="submit" class="button">Сomment</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endif %}
+            <tr>
+                <td>
+
+                </td>
+            </tr>
+            <br><br>
+        </table>
+    {% endfor %}
+</div>
+

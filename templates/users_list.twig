@@ -1,0 +1,29 @@
+<table>
+    {% for user in base %}
+
+        <h1>Пользователь "{{ user.username }}"</h1>
+
+        <tr>
+            <td>ID - {{ user.id }}</td>
+        </tr>
+        <tr>
+            <td>Username - {{ user.username }}</td>
+        </tr>
+        <tr>
+            <td>Password - {{ user.password }}</td>
+        </tr>
+        <tr>
+            <td>Age - {{ user.age }}</td>
+        </tr>
+        <tr>
+            <td>Phone - {{ user.phone }}</td>
+        </tr>
+        <tr>
+            <td>Email - {{ user.email }}</td>
+        </tr>
+        <tr>
+            <td>Type - {{ user.user_type }}</td>
+        </tr>
+    {% endfor %}
+</table>
+

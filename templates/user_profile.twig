@@ -1,0 +1,91 @@
+
+{% if edit_profile == true or (err_username != null or err_email != null or err_age != null or err_phone != null or err_password != null) %}
+    <form action="/user_profile.php" method="post">
+        <input type="hidden" name="action" value="edit_profile">
+        <ul style="list-style-type: none">
+            {% for user in user_profile %}
+                <li>Username: <input class="input" type="text" name="username" value="{{ user.username }}"/>
+                    {% if err_username == 1 %}
+                        <small>Введите имя корректно</small>
+                    {% endif %}
+
+                    {% if err_username == 2 %}
+                        <small>Имя не должно быть больше 10 символов</small>
+                    {% endif %}
+
+                    {% if err_username == 3 %}
+                        <small>Поле не может быть пустым</small>
+                    {% endif %}
+                </li>
+                <li>E-mail: <input class="input" type="email" name="email" value="{{ user.email }}"/>
+                    {% if err_email == 1 %}
+                        <small>Email введен некорректно</small>
+                    {% endif %}
+
+                    {% if err_email == 2 %}
+                        <small>Поле не можнт быть пустым</small>
+                    {% endif %}
+                </li>
+                <li>Age: <input class="input" type="text" name="age" value="{{ user.age }}"/>
+                    {% if err_age == 1 %}
+                        <small>Не думаю, что тебе {{ age_validation_err_1 }}..</small>
+                    {% endif %}
+                    {% if err_age == 2 %}
+                        <small>Введите целое число</small>
+                    {% endif %}
+                    {% if err_age == 3 %}
+                        <small>Поле не может быть пустым</small>
+                    {% endif %}
+                </li>
+                <li>Phone: <input class="input" type="text" name="phone" value="{{ user.phone }}"/>
+                    {% if err_phone == 1 %}
+                        <small>Номер телефона введен некорректно</small>
+                    {% endif %}
+                    {% if err_phone == 2 %}
+                        <small>Поле не может быть пустым</small>
+                    {% endif %}
+                </li>
+                <li>Password: <input class="input" type="text" name="password" value="{{ user.password }}"/>
+                    {% if err_password == 1 %}
+                        <small>Поле не может быть пустым</small>
+                    {% endif %}
+
+                    {% if err_password == 2 %}
+                        <small>Пароль должен состояить минимум из 5 символов</small>
+                    {% endif %}
+                </li>
+                <li>
+                    <table>
+                        <tr>
+                            <td>
+                                <button type="submit" class="button">Save</button>
+                            </td>
+                            <td>
+                                <button class="button"><a style="text-decoration: none; color: black" href="/user_profile.php">Cancel</a></button>
+                            </td>
+                        </tr>
+                    </table>
+
+                </li>
+            {% endfor %}
+        </ul>
+    </form>
+{% else %}
+    {% for user in user_profile %}
+        <ul style="list-style-type: none">
+            {% if user.username == true %}
+            <li>Username: {{ user.username }}</li>
+            {% endif %}
+            {% if user.email == true %}
+            <li>E-mail: {{ user.email }}</li>
+            {% endif %}
+            {% if user.age == true %}
+            <li>Age: {{ user.age }}</li>
+            {% endif %}
+            {% if user.phone == true %}
+            <li>Phone: {{ user.phone }}</li>
+            {% endif %}
+            <li><button class="button" ><a style="text-decoration: none; color: black" href="/user_profile.php?command=edit_profile">Edit profile</a></button></li>
+        </ul>
+    {% endfor %}
+{% endif %}

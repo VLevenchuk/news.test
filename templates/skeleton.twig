@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Skeleton</title>
+
+</head>
+<body>
+
+<table style="margin: auto; font-size: 20px; border-spacing: 50px 0;">
+    <tr>
+        <td>
+            <a href="/index.php">Home</a>
+        </td>
+        <td>
+            <a href="/news.php">News</a>
+        </td>
+        <td>
+            <a href="/about.php">About</a>
+        </td>
+        {% if user_online == false %}
+            <td>
+                <a href="/registration.php">Registration</a>
+            </td>
+            <td>
+                <a href="/login.php">Login</a>
+            </td>
+        {% endif %}
+        {% if user_online == true %}
+            <td>
+                <a href="/user_profile.php">Profile</a>
+            </td>
+            <td>
+                <a href="/login.php?command=logout">Logout</a>
+            </td>
+        {% endif %}
+    </tr>
+</table>
+
+{{ include(tpl) }}
+
+</body>
+</html>
