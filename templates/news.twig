@@ -1,7 +1,6 @@
-{# Сделать HTML нормальным по возможности! #}
+{# заняться HTML и сделать его нормальным по возможности! #}
 
 <p>НАВІНАЯ СТАРОНКА</p>
-
 
 {% if user_type == 'admin' %}
     <a href="/news.php?command=add_news_input">Добавить новость</a>
@@ -64,11 +63,18 @@
             {% endif %}
             <tr>
                 <td>
-
+                    <p>Комментарии:</p>
+                    {% for comment in news.comments %}
+                            <dl>
+                                <dt>@{{ comment.username }}:</dt>
+                                <dd>{{ comment.text }}</dd>
+                                <dd><small>{{ comment.date }}</small></dd>  {# сделать древовидные ответы #}
+                            </dl>
+                    {% endfor %}
                 </td>
             </tr>
-            <br><br>
         </table>
+        <br><br>
     {% endfor %}
 </div>
 

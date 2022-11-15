@@ -24,17 +24,6 @@ function addNews($db)
     ]);
 }
 
-function comments($db)
-{
-    $query = $db->prepare("
-            SELECT *
-            FROM myfirstbase.news AS n
-            JOIN myfirstbase.users AS u ON u.id = n.id
-        ");
-
-    $query->execute([]);
-}
-
 function allNews($db)
 {
     $query = $db->prepare("
@@ -48,7 +37,10 @@ function allNews($db)
 }
 
 $allNews = allNews($db);
-$allComments = allComments($db);
+
+foreach ($allNews as $id => $news) {
+    $allNews[$id]['comments'] = get_comment($db, $news['id']);
+}
 
 $add_news_input = $command === 'add_news_input';
 
@@ -64,10 +56,8 @@ if ($action_post === 'add_comment') {
 
 echo renderTemplate(
     'news.twig',
-    ['user_online' => $user_online,
+    [   'user_online' => $user_online,
         'user_type' => $_SESSION['user']['user_type'] ?? null,
         'all_news' => $allNews,
-        'all_comments' => allComments($db),
         'add_news_input' => $add_news_input]
 );
-
